@@ -1,16 +1,33 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 // to create an express application, just call express()
 // the express function returns an express application
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 // this line tells which template engine to use
 app.set('view engine', 'pug');
 
+app.use((req, res, next) => {
+    console.log('Hello');
+    next();
+});
+
+app.use((req, res, next) => {
+    console.log('world');
+    next();
+});
+
 app.get('/', (req, res) => {
-    res.render('index');
+    const name = req.cookies.username;
+    if (name) {
+        res.render('index', {name});
+    } else {
+        res.redirect('/hello');
+    }
 });
 
 app.get('/cards', (req, res) => {
@@ -18,13 +35,23 @@ app.get('/cards', (req, res) => {
 });
 
 app.get('/hello', (req, res) => {
-    res.render('hello', {name: req.body.username});
+    const name = req.cookies.username;
+    if (name) {
+        res.redirect('/');
+    } else {
+        res.render('hello');
+    }
 });
 
 app.post('/hello', (req, res) => {
-    // console.dir(req.body);
-    res.render('hello', {name: req.body.username});
+    res.cookie('username', req.body.username);
+    res.redirect('/');
 });
+
+app.post('/goodbye', (req, res) => {
+    res.clearCookie('username');
+    res.redirect('/hello');
+})
 
 // set up the development server using the listen method
 app.listen(4000, () => {
