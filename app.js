@@ -2,9 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
-// to create an express application, just call express()
-// the express function returns an express application
 const app = express();
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/static', express.static('public'));
@@ -18,12 +17,12 @@ const cardRoutes = require('./routes/cards');
 app.use(mainRoutes);
 app.use('/cards', cardRoutes);
 
-app.use((req, res, next) => {
-    console.log('Hello');
-    // const err = new Error('Sorry, but there is no page here.');
-    // err.status = 500;
-    next();
-});
+// app.use((req, res, next) => {
+//     console.log('Hello');
+//     // const err = new Error('Sorry, but there is no page here.');
+//     // err.status = 500;
+//     next();
+// });
 
 //this middleware creates the error object and hands it off to the error handler
 app.use((req, res, next) => {
