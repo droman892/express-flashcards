@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-
-router.use((req, res, next) => {
-    console.log('world');
-    next();
-});
+// router.use((req, res, next) => {
+//     console.log('world');
+//     next();
+// });
 
 router.get('/', (req, res) => {
     const name = req.cookies.username;
@@ -15,8 +14,6 @@ router.get('/', (req, res) => {
         res.redirect('/hello');
     }
 });
-
-
 
 router.get('/hello', (req, res) => {
     const name = req.cookies.username;
