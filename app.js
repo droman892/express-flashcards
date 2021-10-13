@@ -11,47 +11,31 @@ app.use(cookieParser());
 // this line tells which template engine to use
 app.set('view engine', 'pug');
 
+const mainRoutes = require('./routes');
+const cardRoutes = require('./routes/cards');
+
+app.use(mainRoutes);
+app.use('/cards', cardRoutes);
+
 app.use((req, res, next) => {
     console.log('Hello');
+    // const err = new Error('Sorry, but there is no page here.');
+    // err.status = 500;
     next();
 });
 
+//this middleware creates the error object and hands it off to the error handler
 app.use((req, res, next) => {
-    console.log('world');
-    next();
+    const err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
-app.get('/', (req, res) => {
-    const name = req.cookies.username;
-    if (name) {
-        res.render('index', {name});
-    } else {
-        res.redirect('/hello');
-    }
+app.use((err, req, res, next) => {
+    res.locals.error = err;
+    res.status(err.status);
+    res.render('error');
 });
-
-app.get('/cards', (req, res) => {
-    res.render('card', {prompt: 'This is interesting, David'});
-});
-
-app.get('/hello', (req, res) => {
-    const name = req.cookies.username;
-    if (name) {
-        res.redirect('/');
-    } else {
-        res.render('hello');
-    }
-});
-
-app.post('/hello', (req, res) => {
-    res.cookie('username', req.body.username);
-    res.redirect('/');
-});
-
-app.post('/goodbye', (req, res) => {
-    res.clearCookie('username');
-    res.redirect('/hello');
-})
 
 // set up the development server using the listen method
 app.listen(4000, () => {
