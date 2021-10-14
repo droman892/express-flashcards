@@ -1,4 +1,4 @@
-![Express Flashcards]()
+![Express Flashcards](https://user-images.githubusercontent.com/25372739/137334595-b8163cc4-7729-4d98-9160-5b2abfe3bea1.png)
 
 This is primarily a server-side, flashcard application built with [Express](https://expressjs.com/)
 
@@ -8,18 +8,18 @@ This is primarily a server-side, flashcard application built with [Express](http
 
 <p align="center"> This Express flashcards application was built to generate dynamic content using templates, variables, and cookies.</p>
 
-<p align="center"> Regarding UX, users enjoy a modest interface with specially curated image/PNG visuals for added life through the interactions.  On first entering the web site at the /hello route, users are prompted to enter their name.  Upon submitting their name, the server writes that name data into a cookie.  The page is then redirected to the root/home page, at which point the user will see their inputted name on the screen since the server will have handed back the name data in the process.  Additionally, users are able to click through a variety of flashcards (randomized through an array), reveal hidden hints, and flip the flashcards over to reveal the answers.</p>
+<p align="center"> Regarding UX, users enjoy a modest interface built with the Pug template engine, and  specially curated image/PNG visuals for added life through the interactions.  On first entering the web site at the /hello route, users are prompted to enter their name.  Upon submitting their name, the server writes that name data into a cookie.  The page is then redirected to the root/home page, at which point the user will see their inputted name on the screen since the server will have handed back the name data in the process.  Additionally, users are able to click through a variety of flashcards (randomized through an array), reveal hidden hints, and flip the flashcards over to reveal the answers.</p>
 
 ## Preview
 
-![Express Flashcards - GIF]()
+![Express Flashcards - GIF](https://user-images.githubusercontent.com/25372739/137336186-248be4c1-03b2-4045-b0ac-f52a1b116d7c.gif)
 
 <!-- [Live Preview](http://david-roman.tech/express-flashcards) -->
 
 ## Business Use Case
 
 - Individual/Student needs an application to study questions and answers
--Business needs the functionality to easily teach its employees on various topics (e.g., rules, policies, behavioral questions)
+- Business needs the functionality to easily teach its employees on various topics (e.g., rules, policies, behavioral questions)
 
 ## Status
 
@@ -34,7 +34,7 @@ This is primarily a server-side, flashcard application built with [Express](http
 - Clone the repo: `https://github.com/droman892/express-flashcards.git` 
 ## Usage
 
-After the project files are downloaded, in the terminal, run `npm install` to install the dependencies, followed by `nodemon app.js` to start the application.  Once the project has loaded on to the browser, feel free to edit it as you see fit using `./public/stylesheets/style.css` and the component files in `./views`.
+After the project files are downloaded, in the terminal, run `npm install` to install the dependencies, followed by `node app.js` to start the application (may want to install nodemon).  Once the project has loaded on to the browser, feel free to edit it as you see fit using `./public/stylesheets/style.css` and the component files in `./views`.
 
 ## Roadmap
 
